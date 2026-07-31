@@ -7,26 +7,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     :root {
-      --bg: #f6f4ef;
+      --bg: #ffffff;
       --card: #ffffff;
-      --ink: #1a1a1a;
-      --muted: #6b6560;
-      --line: #e4dfd6;
-      --accent: #0d6b5c;
-      --accent-soft: #e6f3f0;
-      --font: "Segoe UI", system-ui, sans-serif;
+      --ink: #202124;
+      --muted: #667085;
+      --line: #e4e7ec;
+      --accent: #7c3aed;
+      --accent-soft: #f3efff;
+      --font: Inter, "Segoe UI", Arial, sans-serif;
     }
     * { box-sizing: border-box; }
+    html { overflow: visible; }
     body {
       margin: 0;
       font-family: var(--font);
       color: var(--ink);
       background: var(--bg);
-      padding: 2rem 1.5rem 5.5rem;
+      padding: 1.5rem;
+      overflow: visible;
     }
     header {
-      max-width: 1100px;
-      margin: 0 auto 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto 1rem;
     }
     header h1 {
       margin: 0 0 0.35rem;
@@ -38,8 +40,8 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
-    .wrap { max-width: 1100px; margin: 0 auto; }
-    .category { margin-bottom: 1.75rem; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    .category { margin-bottom: 1.5rem; }
     .cat-row {
       display: flex;
       align-items: baseline;
@@ -67,7 +69,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 0.75rem;
     }
     .skill-card {
@@ -76,7 +78,7 @@
       align-items: flex-start;
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 0.85rem 0.95rem;
       cursor: pointer;
       transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
@@ -84,7 +86,7 @@
     }
     .skill-card:hover {
       border-color: var(--accent);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 10px rgba(48, 32, 80, 0.08);
     }
     .skill-card.selected {
       border-color: var(--accent);
@@ -102,7 +104,6 @@
       margin: 0 0 0.35rem;
       font-size: 0.95rem;
       font-weight: 650;
-      font-family: ui-monospace, Consolas, monospace;
       color: var(--accent);
     }
     .skill-card p {
@@ -112,20 +113,16 @@
       color: var(--muted);
     }
     .bar {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #fff;
-      border-top: 1px solid var(--line);
-      padding: 0.85rem 1.25rem;
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 0.75rem;
       flex-wrap: wrap;
-      z-index: 20;
-      box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem;
     }
     .bar .count {
       color: var(--muted);
@@ -165,6 +162,13 @@
     <p>41 skills — select one or more, then download a combined package</p>
   </header>
   <div class="wrap">
+    <div class="bar">
+      <span class="count" id="selCount">0 selected</span>
+      <button type="button" id="btnAll">Select all</button>
+      <button type="button" id="btnClear">Clear</button>
+      <button type="button" class="primary" id="btnDownload" disabled>Download selected</button>
+      <span class="status" id="status"></span>
+    </div>
     
     <section class="category" data-category="Account">
       <div class="cat-row">
@@ -502,14 +506,6 @@
           </span>
         </label></div>
     </section>
-  </div>
-
-  <div class="bar">
-    <span class="count" id="selCount">0 selected</span>
-    <button type="button" id="btnAll">Select all</button>
-    <button type="button" id="btnClear">Clear</button>
-    <button type="button" class="primary" id="btnDownload" disabled>Download selected</button>
-    <span class="status" id="status"></span>
   </div>
 
   <script>
