@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GPTfy Skills</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --card: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #6b6560;
+      --line: #e4dfd6;
+      --accent: #0d6b5c;
+      --accent-soft: #e6f3f0;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      padding: 2rem 1.5rem 5.5rem;
+    }
+    header {
+      max-width: 1100px;
+      margin: 0 auto 1.25rem;
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.5rem;
+      font-weight: 650;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .category { margin-bottom: 1.75rem; }
+    .cat-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .category h2 {
+      margin: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .linkish {
+      border: 0;
+      background: none;
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-card {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.85rem 0.95rem;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    .skill-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .skill-check {
+      margin-top: 0.2rem;
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+    }
+    .card-body { min-width: 0; }
+    .skill-card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 650;
+      font-family: ui-monospace, Consolas, monospace;
+      color: var(--accent);
+    }
+    .skill-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+    .bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      z-index: 20;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
+    }
+    .bar .count {
+      color: var(--muted);
+      font-size: 0.9rem;
+      min-width: 8rem;
+    }
+    .bar button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 0.55rem 0.9rem;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .bar button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .bar button.primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .bar .status {
+      color: var(--muted);
+      font-size: 0.85rem;
+      min-height: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GPTfy Skills</h1>
+    <p>41 skills — select one or more, then download a combined package</p>
+  </header>
+  <div class="wrap">
+    
+    <section class="category" data-category="Account">
+      <div class="cat-row">
+        <h2>Account</h2>
+        <button type="button" class="linkish select-cat" data-cat="Account">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="create_account">
+          <input type="checkbox" class="skill-check" value="create_account" />
+          <span class="card-body">
+            <h3>create_account</h3>
+            <p>Creates a new Account.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fuzzy_search_accounts">
+          <input type="checkbox" class="skill-check" value="fuzzy_search_accounts" />
+          <span class="card-body">
+            <h3>fuzzy_search_accounts</h3>
+            <p>Searches Accounts by partial Name match.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_account_details">
+          <input type="checkbox" class="skill-check" value="fetch_account_details" />
+          <span class="card-body">
+            <h3>fetch_account_details</h3>
+            <p>Account detail JSON: pass account_id (preferred on 001 page) OR account_name.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="update_account_fields">
+          <input type="checkbox" class="skill-check" value="update_account_fields" />
+          <span class="card-body">
+            <h3>update_account_fields</h3>
+            <p>Updates one or more fields on an existing Account.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="delete_account">
+          <input type="checkbox" class="skill-check" value="delete_account" />
+          <span class="card-body">
+            <h3>delete_account</h3>
+            <p>Permanently deletes an Account record.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_account_related_lists">
+          <input type="checkbox" class="skill-check" value="fetch_account_related_lists" />
+          <span class="card-body">
+            <h3>fetch_account_related_lists</h3>
+            <p>Returns the related lists for an Account — Contacts, Opportunities, and/or Cases.</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Contact">
+      <div class="cat-row">
+        <h2>Contact</h2>
+        <button type="button" class="linkish select-cat" data-cat="Contact">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="fuzzy_search_contacts">
+          <input type="checkbox" class="skill-check" value="fuzzy_search_contacts" />
+          <span class="card-body">
+            <h3>fuzzy_search_contacts</h3>
+            <p>Searches Contacts by Name OR Email (partial match).</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_contact_details">
+          <input type="checkbox" class="skill-check" value="fetch_contact_details" />
+          <span class="card-body">
+            <h3>fetch_contact_details</h3>
+            <p>Returns the full detail of a single Contact — FirstName, LastName, Email, Phone, MobilePhone, Title,…</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="create_contact">
+          <input type="checkbox" class="skill-check" value="create_contact" />
+          <span class="card-body">
+            <h3>create_contact</h3>
+            <p>Creates a new Contact.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="update_contact_fields">
+          <input type="checkbox" class="skill-check" value="update_contact_fields" />
+          <span class="card-body">
+            <h3>update_contact_fields</h3>
+            <p>Updates one or more fields on an existing Contact.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="delete_contact">
+          <input type="checkbox" class="skill-check" value="delete_contact" />
+          <span class="card-body">
+            <h3>delete_contact</h3>
+            <p>Permanently deletes a Contact.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="log_contact_activity">
+          <input type="checkbox" class="skill-check" value="log_contact_activity" />
+          <span class="card-body">
+            <h3>log_contact_activity</h3>
+            <p>Logs a completed Task on a Contact.</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Lead">
+      <div class="cat-row">
+        <h2>Lead</h2>
+        <button type="button" class="linkish select-cat" data-cat="Lead">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="fuzzy_search_leads">
+          <input type="checkbox" class="skill-check" value="fuzzy_search_leads" />
+          <span class="card-body">
+            <h3>fuzzy_search_leads</h3>
+            <p>Searches Leads by Name, Company, or Email (partial match).</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_lead_details">
+          <input type="checkbox" class="skill-check" value="fetch_lead_details" />
+          <span class="card-body">
+            <h3>fetch_lead_details</h3>
+            <p>Returns full detail of a single Lead — FirstName, LastName, Company, Title, Email, Phone, Status,…</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="create_lead">
+          <input type="checkbox" class="skill-check" value="create_lead" />
+          <span class="card-body">
+            <h3>create_lead</h3>
+            <p>Creates a new Lead.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="update_lead_fields">
+          <input type="checkbox" class="skill-check" value="update_lead_fields" />
+          <span class="card-body">
+            <h3>update_lead_fields</h3>
+            <p>Updates one or more fields on an existing Lead.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="convert_lead">
+          <input type="checkbox" class="skill-check" value="convert_lead" />
+          <span class="card-body">
+            <h3>convert_lead</h3>
+            <p>Converts a Lead into Account + Contact + (optionally) Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="log_lead_activity">
+          <input type="checkbox" class="skill-check" value="log_lead_activity" />
+          <span class="card-body">
+            <h3>log_lead_activity</h3>
+            <p>Logs a completed Task on a Lead.</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Opportunity">
+      <div class="cat-row">
+        <h2>Opportunity</h2>
+        <button type="button" class="linkish select-cat" data-cat="Opportunity">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="fuzzy_search_opportunities">
+          <input type="checkbox" class="skill-check" value="fuzzy_search_opportunities" />
+          <span class="card-body">
+            <h3>fuzzy_search_opportunities</h3>
+            <p>Searches Opportunities by Name (partial match).</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_opportunity_details">
+          <input type="checkbox" class="skill-check" value="fetch_opportunity_details" />
+          <span class="card-body">
+            <h3>fetch_opportunity_details</h3>
+            <p>Returns full detail of a single Opportunity — Name, StageName, Amount, CloseDate, Probability,…</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="create_opportunity">
+          <input type="checkbox" class="skill-check" value="create_opportunity" />
+          <span class="card-body">
+            <h3>create_opportunity</h3>
+            <p>Creates a new Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="update_opportunity_fields">
+          <input type="checkbox" class="skill-check" value="update_opportunity_fields" />
+          <span class="card-body">
+            <h3>update_opportunity_fields</h3>
+            <p>Updates one or more fields on an existing Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="delete_opportunity">
+          <input type="checkbox" class="skill-check" value="delete_opportunity" />
+          <span class="card-body">
+            <h3>delete_opportunity</h3>
+            <p>Permanently deletes an Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="log_opportunity_activity">
+          <input type="checkbox" class="skill-check" value="log_opportunity_activity" />
+          <span class="card-body">
+            <h3>log_opportunity_activity</h3>
+            <p>Logs a completed Task on an Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="add_opportunity_line_item">
+          <input type="checkbox" class="skill-check" value="add_opportunity_line_item" />
+          <span class="card-body">
+            <h3>add_opportunity_line_item</h3>
+            <p>Adds a Product (OpportunityLineItem) to an Opportunity.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_opportunity_recent_changes">
+          <input type="checkbox" class="skill-check" value="fetch_opportunity_recent_changes" />
+          <span class="card-body">
+            <h3>fetch_opportunity_recent_changes</h3>
+            <p>Returns the field-history audit for an Opportunity over the last N days.</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Case">
+      <div class="cat-row">
+        <h2>Case</h2>
+        <button type="button" class="linkish select-cat" data-cat="Case">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="fuzzy_search_cases">
+          <input type="checkbox" class="skill-check" value="fuzzy_search_cases" />
+          <span class="card-body">
+            <h3>fuzzy_search_cases</h3>
+            <p>Searches Cases by CaseNumber or Subject (partial match).</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_case_details">
+          <input type="checkbox" class="skill-check" value="fetch_case_details" />
+          <span class="card-body">
+            <h3>fetch_case_details</h3>
+            <p>Returns the full detail of a single Case — Subject, Description, Status, Priority, Type, Origin, Reason,…</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="create_case">
+          <input type="checkbox" class="skill-check" value="create_case" />
+          <span class="card-body">
+            <h3>create_case</h3>
+            <p>Creates a new Case.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="update_case_fields">
+          <input type="checkbox" class="skill-check" value="update_case_fields" />
+          <span class="card-body">
+            <h3>update_case_fields</h3>
+            <p>Updates one or more fields on an existing Case.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="close_case">
+          <input type="checkbox" class="skill-check" value="close_case" />
+          <span class="card-body">
+            <h3>close_case</h3>
+            <p>Closes a Case (sets Status = &quot;Closed&quot;).</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Activity">
+      <div class="cat-row">
+        <h2>Activity</h2>
+        <button type="button" class="linkish select-cat" data-cat="Activity">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="create_task">
+          <input type="checkbox" class="skill-check" value="create_task" />
+          <span class="card-body">
+            <h3>create_task</h3>
+            <p>Creates a Task on any record.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="create_event">
+          <input type="checkbox" class="skill-check" value="create_event" />
+          <span class="card-body">
+            <h3>create_event</h3>
+            <p>Creates an Event (calendar entry) on any record.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_my_open_tasks">
+          <input type="checkbox" class="skill-check" value="fetch_my_open_tasks" />
+          <span class="card-body">
+            <h3>fetch_my_open_tasks</h3>
+            <p>Returns the running user open Tasks (IsClosed = false), sorted by ActivityDate ascending.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="complete_task">
+          <input type="checkbox" class="skill-check" value="complete_task" />
+          <span class="card-body">
+            <h3>complete_task</h3>
+            <p>Marks a Task as Status = &quot;Completed&quot;.</p>
+          </span>
+        </label></div>
+    </section>
+    <section class="category" data-category="Utility">
+      <div class="cat-row">
+        <h2>Utility</h2>
+        <button type="button" class="linkish select-cat" data-cat="Utility">Select all</button>
+      </div>
+      <div class="grid">
+        <label class="skill-card" data-skill="bulk_update_records">
+          <input type="checkbox" class="skill-check" value="bulk_update_records" />
+          <span class="card-body">
+            <h3>bulk_update_records</h3>
+            <p>Generic bulk multi-record / multi-field / multi-type update for ANY standard or custom Salesforce object.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_record_history">
+          <input type="checkbox" class="skill-check" value="fetch_record_history" />
+          <span class="card-body">
+            <h3>fetch_record_history</h3>
+            <p>Returns field-history audit for any record on any object that has Field History Tracking enabled.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_user_info">
+          <input type="checkbox" class="skill-check" value="fetch_user_info" />
+          <span class="card-body">
+            <h3>fetch_user_info</h3>
+            <p>Returns the running user information — Name, Username, Email, Profile, Role, TimeZone, Locale, Language and…</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="run_internal_prompt">
+          <input type="checkbox" class="skill-check" value="run_internal_prompt" />
+          <span class="card-body">
+            <h3>run_internal_prompt</h3>
+            <p>Invokes an internal GPTfy AI Prompt against a specific record and returns the LLM-generated narrative.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_picklist_values">
+          <input type="checkbox" class="skill-check" value="fetch_picklist_values" />
+          <span class="card-body">
+            <h3>fetch_picklist_values</h3>
+            <p>Returns the valid picklist (or multi-picklist) values for a field on any object.</p>
+          </span>
+        </label>
+        <label class="skill-card" data-skill="fetch_session_context">
+          <input type="checkbox" class="skill-check" value="fetch_session_context" />
+          <span class="card-body">
+            <h3>fetch_session_context</h3>
+            <p>Returns userContextId and the related record Id as WhoId (Contact/Lead) or WhatId…</p>
+          </span>
+        </label></div>
+    </section>
+  </div>
+
+  <div class="bar">
+    <span class="count" id="selCount">0 selected</span>
+    <button type="button" id="btnAll">Select all</button>
+    <button type="button" id="btnClear">Clear</button>
+    <button type="button" class="primary" id="btnDownload" disabled>Download selected</button>
+    <span class="status" id="status"></span>
+  </div>
+
+  <script>
+    const checks = () => [...document.querySelectorAll('.skill-check')];
+    const countEl = document.getElementById('selCount');
+    const btnDownload = document.getElementById('btnDownload');
+    const statusEl = document.getElementById('status');
+
+    function selectedNames() {
+      return checks().filter(c => c.checked).map(c => c.value);
+    }
+
+    function syncUI() {
+      const names = selectedNames();
+      countEl.textContent = names.length + ' selected';
+      btnDownload.disabled = names.length === 0;
+      document.querySelectorAll('.skill-card').forEach(card => {
+        const cb = card.querySelector('.skill-check');
+        card.classList.toggle('selected', cb.checked);
+      });
+    }
+
+    document.querySelectorAll('.skill-check').forEach(cb => {
+      cb.addEventListener('change', syncUI);
+    });
+
+    document.getElementById('btnAll').addEventListener('click', () => {
+      checks().forEach(c => { c.checked = true; });
+      syncUI();
+    });
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      checks().forEach(c => { c.checked = false; });
+      syncUI();
+      statusEl.textContent = '';
+    });
+
+    document.querySelectorAll('.select-cat').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.category').forEach(sec => {
+          if (sec.dataset.category !== cat) return;
+          sec.querySelectorAll('.skill-check').forEach(c => { c.checked = true; });
+        });
+        syncUI();
+      });
+    });
+
+    async function downloadCombined() {
+      const names = selectedNames();
+      if (!names.length) return;
+      if (typeof JSZip === 'undefined') {
+        statusEl.textContent = 'Zip library failed to load. Check network/CDN.';
+        return;
+      }
+
+      btnDownload.disabled = true;
+      statusEl.textContent = 'Building combined zip…';
+
+      try {
+        const out = new JSZip();
+        const readmeLines = [
+          'GPTfy combined skill package',
+          '===========================',
+          '',
+          'Selected skills (' + names.length + '):',
+          ...names.map(n => '  - ' + n),
+          '',
+          'Each folder is a ready-to-import skill package.',
+          'Deploy Apex from any one package (handlers may overlap), then run each seed.apex',
+          'after setting DATA_MAPPING and AI_MODEL.',
+          ''
+        ];
+        out.file('SELECTED_SKILLS.txt', readmeLines.join('\n'));
+
+        for (let i = 0; i < names.length; i++) {
+          const name = names[i];
+          statusEl.textContent = 'Fetching ' + (i + 1) + '/' + names.length + ': ' + name;
+          const res = await fetch('zips/' + encodeURIComponent(name) + '.zip');
+          if (!res.ok) throw new Error('Failed to fetch ' + name + ' (' + res.status + ')');
+          const buf = await res.arrayBuffer();
+          const skillZip = await JSZip.loadAsync(buf);
+          const folder = out.folder(name);
+          const tasks = [];
+          skillZip.forEach((path, entry) => {
+            if (entry.dir) return;
+            // Individual zips are rooted as skillName/...
+            const parts = path.split('/');
+            const rel = parts[0] === name ? parts.slice(1).join('/') : path;
+            if (!rel) return;
+            tasks.push(
+              entry.async('uint8array').then(data => folder.file(rel, data))
+            );
+          });
+          await Promise.all(tasks);
+        }
+
+        statusEl.textContent = 'Compressing…';
+        const blob = await out.generateAsync({ type: 'blob' });
+        const a = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'gptfy-skills-selected-' + names.length + '.zip';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        statusEl.textContent = 'Downloaded ' + names.length + ' skills.';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Error: ' + (err && err.message ? err.message : err);
+      } finally {
+        syncUI();
+      }
+    }
+
+    btnDownload.addEventListener('click', downloadCombined);
+    syncUI();
+  </script>
+</body>
+</html>
