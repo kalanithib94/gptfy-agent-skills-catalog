@@ -632,17 +632,43 @@
     btnDownload.addEventListener('click', downloadCombined);
     syncUI();
 
-    // Let the Dock embed resize to the exact content height.
+    // Report content height so the Dock embed can size itself.
+    // Measure the content box, never the viewport: scrollHeight grows with the
+    // iframe once it is taller than the content, which feeds back as a resize loop.
+    let lastHeight = 0;
+    let pending = false;
+
+    function measure() {
+      const styles = getComputedStyle(document.body);
+      return Math.ceil(
+        document.body.getBoundingClientRect().height +
+        parseFloat(styles.marginTop) +
+        parseFloat(styles.marginBottom)
+      );
+    }
+
     function reportHeight() {
-      const height = Math.ceil(document.documentElement.scrollHeight);
+      const height = measure();
+      if (Math.abs(height - lastHeight) < 4) return;
+      lastHeight = height;
       parent.postMessage({ type: 'gptfy-skills-height', height }, '*');
     }
-    window.addEventListener('load', reportHeight);
-    window.addEventListener('resize', reportHeight);
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(reportHeight).observe(document.body);
+
+    function scheduleReport() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        reportHeight();
+      });
     }
-    reportHeight();
+
+    window.addEventListener('load', scheduleReport);
+    window.addEventListener('resize', scheduleReport);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(scheduleReport).observe(document.body);
+    }
+    scheduleReport();
   </script>
 </body>
 </html>
