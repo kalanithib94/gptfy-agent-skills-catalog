@@ -23,7 +23,7 @@
       font-family: var(--font);
       color: var(--ink);
       background: var(--bg);
-      padding: 1.5rem;
+      padding: 1rem;
       overflow: visible;
     }
     header {
@@ -69,8 +69,8 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 0.65rem;
     }
     .skill-card {
       display: flex;
@@ -79,7 +79,8 @@
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 0.85rem 0.95rem;
+      padding: 0.75rem 0.8rem;
+      min-width: 0;
       cursor: pointer;
       transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
       user-select: none;
@@ -102,15 +103,21 @@
     .card-body { min-width: 0; }
     .skill-card h3 {
       margin: 0 0 0.35rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 650;
       color: var(--accent);
+      line-height: 1.3;
+      overflow-wrap: anywhere;
     }
     .skill-card p {
       margin: 0;
-      font-size: 0.85rem;
-      line-height: 1.4;
+      font-size: 0.8rem;
+      line-height: 1.35;
       color: var(--muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .bar {
       background: #f9fafb;
@@ -179,43 +186,43 @@
         <label class="skill-card" data-skill="create_account">
           <input type="checkbox" class="skill-check" value="create_account" />
           <span class="card-body">
-            <h3>create_account</h3>
+            <h3>Create Account</h3>
             <p>Creates a new Account.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fuzzy_search_accounts">
           <input type="checkbox" class="skill-check" value="fuzzy_search_accounts" />
           <span class="card-body">
-            <h3>fuzzy_search_accounts</h3>
+            <h3>Fuzzy Search Accounts</h3>
             <p>Searches Accounts by partial Name match.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_account_details">
           <input type="checkbox" class="skill-check" value="fetch_account_details" />
           <span class="card-body">
-            <h3>fetch_account_details</h3>
-            <p>Account detail JSON: pass account_id (preferred on 001 page) OR account_name.</p>
+            <h3>Fetch Account Details</h3>
+            <p>Account detail JSON: pass account_id (preferred on 001 page) OR…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="update_account_fields">
           <input type="checkbox" class="skill-check" value="update_account_fields" />
           <span class="card-body">
-            <h3>update_account_fields</h3>
+            <h3>Update Account Fields</h3>
             <p>Updates one or more fields on an existing Account.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="delete_account">
           <input type="checkbox" class="skill-check" value="delete_account" />
           <span class="card-body">
-            <h3>delete_account</h3>
+            <h3>Delete Account</h3>
             <p>Permanently deletes an Account record.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_account_related_lists">
           <input type="checkbox" class="skill-check" value="fetch_account_related_lists" />
           <span class="card-body">
-            <h3>fetch_account_related_lists</h3>
-            <p>Returns the related lists for an Account — Contacts, Opportunities, and/or Cases.</p>
+            <h3>Fetch Account Related Lists</h3>
+            <p>Returns the related lists for an Account — Contacts, Opportunities,…</p>
           </span>
         </label></div>
     </section>
@@ -228,42 +235,42 @@
         <label class="skill-card" data-skill="fuzzy_search_contacts">
           <input type="checkbox" class="skill-check" value="fuzzy_search_contacts" />
           <span class="card-body">
-            <h3>fuzzy_search_contacts</h3>
+            <h3>Fuzzy Search Contacts</h3>
             <p>Searches Contacts by Name OR Email (partial match).</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_contact_details">
           <input type="checkbox" class="skill-check" value="fetch_contact_details" />
           <span class="card-body">
-            <h3>fetch_contact_details</h3>
-            <p>Returns the full detail of a single Contact — FirstName, LastName, Email, Phone, MobilePhone, Title,…</p>
+            <h3>Fetch Contact Details</h3>
+            <p>Returns the full detail of a single Contact — FirstName, LastName,…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="create_contact">
           <input type="checkbox" class="skill-check" value="create_contact" />
           <span class="card-body">
-            <h3>create_contact</h3>
+            <h3>Create Contact</h3>
             <p>Creates a new Contact.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="update_contact_fields">
           <input type="checkbox" class="skill-check" value="update_contact_fields" />
           <span class="card-body">
-            <h3>update_contact_fields</h3>
+            <h3>Update Contact Fields</h3>
             <p>Updates one or more fields on an existing Contact.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="delete_contact">
           <input type="checkbox" class="skill-check" value="delete_contact" />
           <span class="card-body">
-            <h3>delete_contact</h3>
+            <h3>Delete Contact</h3>
             <p>Permanently deletes a Contact.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="log_contact_activity">
           <input type="checkbox" class="skill-check" value="log_contact_activity" />
           <span class="card-body">
-            <h3>log_contact_activity</h3>
+            <h3>Log Contact Activity</h3>
             <p>Logs a completed Task on a Contact.</p>
           </span>
         </label></div>
@@ -277,42 +284,42 @@
         <label class="skill-card" data-skill="fuzzy_search_leads">
           <input type="checkbox" class="skill-check" value="fuzzy_search_leads" />
           <span class="card-body">
-            <h3>fuzzy_search_leads</h3>
+            <h3>Fuzzy Search Leads</h3>
             <p>Searches Leads by Name, Company, or Email (partial match).</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_lead_details">
           <input type="checkbox" class="skill-check" value="fetch_lead_details" />
           <span class="card-body">
-            <h3>fetch_lead_details</h3>
-            <p>Returns full detail of a single Lead — FirstName, LastName, Company, Title, Email, Phone, Status,…</p>
+            <h3>Fetch Lead Details</h3>
+            <p>Returns full detail of a single Lead — FirstName, LastName, Company,…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="create_lead">
           <input type="checkbox" class="skill-check" value="create_lead" />
           <span class="card-body">
-            <h3>create_lead</h3>
+            <h3>Create Lead</h3>
             <p>Creates a new Lead.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="update_lead_fields">
           <input type="checkbox" class="skill-check" value="update_lead_fields" />
           <span class="card-body">
-            <h3>update_lead_fields</h3>
+            <h3>Update Lead Fields</h3>
             <p>Updates one or more fields on an existing Lead.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="convert_lead">
           <input type="checkbox" class="skill-check" value="convert_lead" />
           <span class="card-body">
-            <h3>convert_lead</h3>
+            <h3>Convert Lead</h3>
             <p>Converts a Lead into Account + Contact + (optionally) Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="log_lead_activity">
           <input type="checkbox" class="skill-check" value="log_lead_activity" />
           <span class="card-body">
-            <h3>log_lead_activity</h3>
+            <h3>Log Lead Activity</h3>
             <p>Logs a completed Task on a Lead.</p>
           </span>
         </label></div>
@@ -326,56 +333,56 @@
         <label class="skill-card" data-skill="fuzzy_search_opportunities">
           <input type="checkbox" class="skill-check" value="fuzzy_search_opportunities" />
           <span class="card-body">
-            <h3>fuzzy_search_opportunities</h3>
+            <h3>Fuzzy Search Opportunities</h3>
             <p>Searches Opportunities by Name (partial match).</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_opportunity_details">
           <input type="checkbox" class="skill-check" value="fetch_opportunity_details" />
           <span class="card-body">
-            <h3>fetch_opportunity_details</h3>
-            <p>Returns full detail of a single Opportunity — Name, StageName, Amount, CloseDate, Probability,…</p>
+            <h3>Fetch Opportunity Details</h3>
+            <p>Returns full detail of a single Opportunity — Name, StageName, Amount,…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="create_opportunity">
           <input type="checkbox" class="skill-check" value="create_opportunity" />
           <span class="card-body">
-            <h3>create_opportunity</h3>
+            <h3>Create Opportunity</h3>
             <p>Creates a new Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="update_opportunity_fields">
           <input type="checkbox" class="skill-check" value="update_opportunity_fields" />
           <span class="card-body">
-            <h3>update_opportunity_fields</h3>
+            <h3>Update Opportunity Fields</h3>
             <p>Updates one or more fields on an existing Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="delete_opportunity">
           <input type="checkbox" class="skill-check" value="delete_opportunity" />
           <span class="card-body">
-            <h3>delete_opportunity</h3>
+            <h3>Delete Opportunity</h3>
             <p>Permanently deletes an Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="log_opportunity_activity">
           <input type="checkbox" class="skill-check" value="log_opportunity_activity" />
           <span class="card-body">
-            <h3>log_opportunity_activity</h3>
+            <h3>Log Opportunity Activity</h3>
             <p>Logs a completed Task on an Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="add_opportunity_line_item">
           <input type="checkbox" class="skill-check" value="add_opportunity_line_item" />
           <span class="card-body">
-            <h3>add_opportunity_line_item</h3>
+            <h3>Add Opportunity Line Item</h3>
             <p>Adds a Product (OpportunityLineItem) to an Opportunity.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_opportunity_recent_changes">
           <input type="checkbox" class="skill-check" value="fetch_opportunity_recent_changes" />
           <span class="card-body">
-            <h3>fetch_opportunity_recent_changes</h3>
+            <h3>Fetch Opportunity Recent Changes</h3>
             <p>Returns the field-history audit for an Opportunity over the last N days.</p>
           </span>
         </label></div>
@@ -389,35 +396,35 @@
         <label class="skill-card" data-skill="fuzzy_search_cases">
           <input type="checkbox" class="skill-check" value="fuzzy_search_cases" />
           <span class="card-body">
-            <h3>fuzzy_search_cases</h3>
+            <h3>Fuzzy Search Cases</h3>
             <p>Searches Cases by CaseNumber or Subject (partial match).</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_case_details">
           <input type="checkbox" class="skill-check" value="fetch_case_details" />
           <span class="card-body">
-            <h3>fetch_case_details</h3>
-            <p>Returns the full detail of a single Case — Subject, Description, Status, Priority, Type, Origin, Reason,…</p>
+            <h3>Fetch Case Details</h3>
+            <p>Returns the full detail of a single Case — Subject, Description,…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="create_case">
           <input type="checkbox" class="skill-check" value="create_case" />
           <span class="card-body">
-            <h3>create_case</h3>
+            <h3>Create Case</h3>
             <p>Creates a new Case.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="update_case_fields">
           <input type="checkbox" class="skill-check" value="update_case_fields" />
           <span class="card-body">
-            <h3>update_case_fields</h3>
+            <h3>Update Case Fields</h3>
             <p>Updates one or more fields on an existing Case.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="close_case">
           <input type="checkbox" class="skill-check" value="close_case" />
           <span class="card-body">
-            <h3>close_case</h3>
+            <h3>Close Case</h3>
             <p>Closes a Case (sets Status = &quot;Closed&quot;).</p>
           </span>
         </label></div>
@@ -431,28 +438,28 @@
         <label class="skill-card" data-skill="create_task">
           <input type="checkbox" class="skill-check" value="create_task" />
           <span class="card-body">
-            <h3>create_task</h3>
+            <h3>Create Task</h3>
             <p>Creates a Task on any record.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="create_event">
           <input type="checkbox" class="skill-check" value="create_event" />
           <span class="card-body">
-            <h3>create_event</h3>
+            <h3>Create Event</h3>
             <p>Creates an Event (calendar entry) on any record.</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_my_open_tasks">
           <input type="checkbox" class="skill-check" value="fetch_my_open_tasks" />
           <span class="card-body">
-            <h3>fetch_my_open_tasks</h3>
-            <p>Returns the running user open Tasks (IsClosed = false), sorted by ActivityDate ascending.</p>
+            <h3>Fetch My Open Tasks</h3>
+            <p>Returns the running user open Tasks (IsClosed = false), sorted by…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="complete_task">
           <input type="checkbox" class="skill-check" value="complete_task" />
           <span class="card-body">
-            <h3>complete_task</h3>
+            <h3>Complete Task</h3>
             <p>Marks a Task as Status = &quot;Completed&quot;.</p>
           </span>
         </label></div>
@@ -466,43 +473,43 @@
         <label class="skill-card" data-skill="bulk_update_records">
           <input type="checkbox" class="skill-check" value="bulk_update_records" />
           <span class="card-body">
-            <h3>bulk_update_records</h3>
-            <p>Generic bulk multi-record / multi-field / multi-type update for ANY standard or custom Salesforce object.</p>
+            <h3>Bulk Update Records</h3>
+            <p>Generic bulk multi-record / multi-field / multi-type update for ANY…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_record_history">
           <input type="checkbox" class="skill-check" value="fetch_record_history" />
           <span class="card-body">
-            <h3>fetch_record_history</h3>
-            <p>Returns field-history audit for any record on any object that has Field History Tracking enabled.</p>
+            <h3>Fetch Record History</h3>
+            <p>Returns field-history audit for any record on any object that has…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_user_info">
           <input type="checkbox" class="skill-check" value="fetch_user_info" />
           <span class="card-body">
-            <h3>fetch_user_info</h3>
-            <p>Returns the running user information — Name, Username, Email, Profile, Role, TimeZone, Locale, Language and…</p>
+            <h3>Fetch User Info</h3>
+            <p>Returns the running user information — Name, Username, Email, Profile,…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="run_internal_prompt">
           <input type="checkbox" class="skill-check" value="run_internal_prompt" />
           <span class="card-body">
-            <h3>run_internal_prompt</h3>
-            <p>Invokes an internal GPTfy AI Prompt against a specific record and returns the LLM-generated narrative.</p>
+            <h3>Run Internal Prompt</h3>
+            <p>Invokes an internal GPTfy AI Prompt against a specific record and…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_picklist_values">
           <input type="checkbox" class="skill-check" value="fetch_picklist_values" />
           <span class="card-body">
-            <h3>fetch_picklist_values</h3>
-            <p>Returns the valid picklist (or multi-picklist) values for a field on any object.</p>
+            <h3>Fetch Picklist Values</h3>
+            <p>Returns the valid picklist (or multi-picklist) values for a field on…</p>
           </span>
         </label>
         <label class="skill-card" data-skill="fetch_session_context">
           <input type="checkbox" class="skill-check" value="fetch_session_context" />
           <span class="card-body">
-            <h3>fetch_session_context</h3>
-            <p>Returns userContextId and the related record Id as WhoId (Contact/Lead) or WhatId…</p>
+            <h3>Fetch Session Context</h3>
+            <p>Returns userContextId and the related record Id as WhoId…</p>
           </span>
         </label></div>
     </section>
@@ -624,6 +631,18 @@
 
     btnDownload.addEventListener('click', downloadCombined);
     syncUI();
+
+    // Let the Dock embed resize to the exact content height.
+    function reportHeight() {
+      const height = Math.ceil(document.documentElement.scrollHeight);
+      parent.postMessage({ type: 'gptfy-skills-height', height }, '*');
+    }
+    window.addEventListener('load', reportHeight);
+    window.addEventListener('resize', reportHeight);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(reportHeight).observe(document.body);
+    }
+    reportHeight();
   </script>
 </body>
 </html>
