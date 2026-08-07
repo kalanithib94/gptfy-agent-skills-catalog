@@ -449,14 +449,14 @@
     <header class="topbar">
       <div class="brand">
         <h1><span>GPTfy</span> Agentic Skills</h1>
-        <span class="meta">111 skills · pick &amp; download</span>
+        <span class="meta">99 skills ready · 12 upcoming · pick &amp; download</span>
       </div>
     </header>
 
     <div class="toolbar">
       <input id="q" class="search" type="search" placeholder="Search skills, API names, or use cases…" />
       <button type="button" class="btn" id="clearSel">Clear</button>
-      <span class="count-pill"><span id="selCount">0</span> selected · <span id="visCount">0</span> shown</span>
+      <span class="count-pill"><span id="selCount">0</span> selected · <span id="visCount">0</span> ready<span id="upcCount"></span></span>
       <button type="button" class="btn primary" id="downloadSel" disabled>Download selected</button>
       <span class="status" id="status"></span>
     </div>
@@ -509,7 +509,7 @@
         <span class="sec-title">Accounts</span>
         <span class="sec-meta">
           <span class="sec-selected" hidden>0 selected</span>
-          <span class="sec-count" title="Skills in category">5</span>
+          <span class="sec-count" title="Skills in category">6</span>
         </span>
       </button>
       <div class="sec-store" hidden>
@@ -525,6 +525,13 @@
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Get Account Details</span></span>
           <span class="desc">Load key account fields plus related contact/opportunity/case counts.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="fetch_account_plan" data-display="Get Account Plan" data-section="Accounts" data-search="get account plan fetch_account_plan load strategic plan and objectives for the account when the object exists.">
+        <input type="checkbox" class="skill-check" value="fetch_account_plan" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Get Account Plan</span></span>
+          <span class="desc">Load strategic plan and objectives for the account when the object exists.</span>
         </span>
       </label>
       <label class="skill" data-name="fetch_account_related_lists" data-display="Get Account Related Records" data-section="Accounts" data-search="get account related records fetch_account_related_lists see contacts, opportunities, cases, and other children on the account.">
@@ -1083,44 +1090,51 @@
       </label>
       </div>
     </div>
-    <div class="sec-tile" data-section="Orders" id="sec-orders">
+    <div class="sec-tile" data-section="Orders &amp; Subscriptions" id="sec-orders-subscriptions">
       <button type="button" class="sec-open" aria-haspopup="dialog">
-        <span class="sec-title">Orders</span>
+        <span class="sec-title">Orders &amp; Subscriptions</span>
         <span class="sec-meta">
           <span class="sec-selected" hidden>0 selected</span>
-          <span class="sec-count" title="Skills in category">5</span>
+          <span class="sec-count" title="Skills in category">6</span>
         </span>
       </button>
       <div class="sec-store" hidden>
-      <label class="skill" data-name="add_order_item" data-display="Add Order Product" data-section="Orders" data-search="add order product add_order_item add a product line to the order.">
+      <label class="skill" data-name="add_order_item" data-display="Add Order Product" data-section="Orders &amp; Subscriptions" data-search="add order product add_order_item add a product line to the order.">
         <input type="checkbox" class="skill-check" value="add_order_item" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Add Order Product</span></span>
           <span class="desc">Add a product line to the order.</span>
         </span>
       </label>
-      <label class="skill" data-name="create_order" data-display="Create Order" data-section="Orders" data-search="create order create_order create an order from account or opportunity context.">
+      <label class="skill" data-name="create_order" data-display="Create Order" data-section="Orders &amp; Subscriptions" data-search="create order create_order create an order from account or opportunity context.">
         <input type="checkbox" class="skill-check" value="create_order" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Create Order</span></span>
           <span class="desc">Create an order from account or opportunity context.</span>
         </span>
       </label>
-      <label class="skill" data-name="fetch_order_details" data-display="Get Order Details" data-section="Orders" data-search="get order details fetch_order_details load order status, account, and totals after win or fulfillment.">
+      <label class="skill" data-name="fetch_order_details" data-display="Get Order Details" data-section="Orders &amp; Subscriptions" data-search="get order details fetch_order_details load order status, account, and totals after win or fulfillment.">
         <input type="checkbox" class="skill-check" value="fetch_order_details" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Get Order Details</span></span>
           <span class="desc">Load order status, account, and totals after win or fulfillment.</span>
         </span>
       </label>
-      <label class="skill" data-name="update_order_fields" data-display="Update Order" data-section="Orders" data-search="update order update_order_fields update order status or header fields during fulfillment.">
+      <label class="skill" data-name="fetch_subscription_details" data-display="Get Subscription Details" data-section="Orders &amp; Subscriptions" data-search="get subscription details fetch_subscription_details load subscription term, quantity, and billing status.">
+        <input type="checkbox" class="skill-check" value="fetch_subscription_details" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Get Subscription Details</span></span>
+          <span class="desc">Load subscription term, quantity, and billing status.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="update_order_fields" data-display="Update Order" data-section="Orders &amp; Subscriptions" data-search="update order update_order_fields update order status or header fields during fulfillment.">
         <input type="checkbox" class="skill-check" value="update_order_fields" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Update Order</span></span>
           <span class="desc">Update order status or header fields during fulfillment.</span>
         </span>
       </label>
-      <label class="skill" data-name="update_order_item" data-display="Update Order Product" data-section="Orders" data-search="update order product update_order_item adjust quantity or price on an order line.">
+      <label class="skill" data-name="update_order_item" data-display="Update Order Product" data-section="Orders &amp; Subscriptions" data-search="update order product update_order_item adjust quantity or price on an order line.">
         <input type="checkbox" class="skill-check" value="update_order_item" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Update Order Product</span></span>
@@ -1228,6 +1242,66 @@
       </label>
       </div>
     </div>
+    <div class="sec-tile" data-section="Field Service" id="sec-field-service">
+      <button type="button" class="sec-open" aria-haspopup="dialog">
+        <span class="sec-title">Field Service</span>
+        <span class="sec-meta">
+          <span class="sec-selected" hidden>0 selected</span>
+          <span class="sec-count" title="Skills in category">7</span>
+        </span>
+      </button>
+      <div class="sec-store" hidden>
+      <label class="skill" data-name="fetch_work_order_details" data-display="Get Work Order Details" data-section="Field Service" data-search="get work order details fetch_work_order_details load field service work order status and related customer data.">
+        <input type="checkbox" class="skill-check" value="fetch_work_order_details" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Get Work Order Details</span></span>
+          <span class="desc">Load field service work order status and related customer data.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="create_work_order" data-display="Create Work Order" data-section="Field Service" data-search="create work order create_work_order open a work order for on-site or remote service.">
+        <input type="checkbox" class="skill-check" value="create_work_order" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Create Work Order</span></span>
+          <span class="desc">Open a work order for on-site or remote service.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="update_work_order_fields" data-display="Update Work Order" data-section="Field Service" data-search="update work order update_work_order_fields change work order status, priority, or schedule fields.">
+        <input type="checkbox" class="skill-check" value="update_work_order_fields" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Update Work Order</span></span>
+          <span class="desc">Change work order status, priority, or schedule fields.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="fetch_service_appointment" data-display="Get Service Appointment" data-section="Field Service" data-search="get service appointment fetch_service_appointment load appointment time window and assigned resource.">
+        <input type="checkbox" class="skill-check" value="fetch_service_appointment" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Get Service Appointment</span></span>
+          <span class="desc">Load appointment time window and assigned resource.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="schedule_service_appointment" data-display="Schedule Service Appointment" data-section="Field Service" data-search="schedule service appointment schedule_service_appointment set or change when a technician visit is booked.">
+        <input type="checkbox" class="skill-check" value="schedule_service_appointment" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Schedule Service Appointment</span></span>
+          <span class="desc">Set or change when a technician visit is booked.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="update_service_appointment" data-display="Update Service Appointment" data-section="Field Service" data-search="update service appointment update_service_appointment edit appointment status, time, or assignment details.">
+        <input type="checkbox" class="skill-check" value="update_service_appointment" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Update Service Appointment</span></span>
+          <span class="desc">Edit appointment status, time, or assignment details.</span>
+        </span>
+      </label>
+      <label class="skill" data-name="fetch_service_resource_availability" data-display="Get Resource Availability" data-section="Field Service" data-search="get resource availability fetch_service_resource_availability check when a technician or resource is free to schedule.">
+        <input type="checkbox" class="skill-check" value="fetch_service_resource_availability" />
+        <span class="skill-body">
+          <span class="skill-top"><span class="skill-title">Get Resource Availability</span></span>
+          <span class="desc">Check when a technician or resource is free to schedule.</span>
+        </span>
+      </label>
+      </div>
+    </div>
     <div class="sec-tile" data-section="Partner Management" id="sec-partner-management">
       <button type="button" class="sec-open" aria-haspopup="dialog">
         <span class="sec-title">Partner Management</span>
@@ -1304,7 +1378,7 @@
         <span class="sec-title">Upcoming <span class="upcoming-badge" title="Requires a Salesforce cloud or package">Cloud add-ons</span></span>
         <span class="sec-meta">
           <span class="sec-selected" hidden>0 selected</span>
-          <span class="sec-count" title="Skills in category">21</span>
+          <span class="sec-count" title="Skills in category">12</span>
         </span>
       </button>
       <div class="sec-store" hidden>
@@ -1350,74 +1424,11 @@
           <span class="desc">Run CPQ pricing so totals and discounts refresh.</span>
         </span>
       </label>
-      <label class="skill" data-name="fetch_work_order_details" data-display="Get Work Order Details" data-section="Upcoming" data-search="get work order details fetch_work_order_details load field service work order status and related customer data.">
-        <input type="checkbox" class="skill-check" value="fetch_work_order_details" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Get Work Order Details</span></span>
-          <span class="desc">Load field service work order status and related customer data.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="create_work_order" data-display="Create Work Order" data-section="Upcoming" data-search="create work order create_work_order open a work order for on-site or remote service.">
-        <input type="checkbox" class="skill-check" value="create_work_order" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Create Work Order</span></span>
-          <span class="desc">Open a work order for on-site or remote service.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="update_work_order_fields" data-display="Update Work Order" data-section="Upcoming" data-search="update work order update_work_order_fields change work order status, priority, or schedule fields.">
-        <input type="checkbox" class="skill-check" value="update_work_order_fields" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Update Work Order</span></span>
-          <span class="desc">Change work order status, priority, or schedule fields.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="fetch_service_appointment" data-display="Get Service Appointment" data-section="Upcoming" data-search="get service appointment fetch_service_appointment load appointment time window and assigned resource.">
-        <input type="checkbox" class="skill-check" value="fetch_service_appointment" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Get Service Appointment</span></span>
-          <span class="desc">Load appointment time window and assigned resource.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="schedule_service_appointment" data-display="Schedule Service Appointment" data-section="Upcoming" data-search="schedule service appointment schedule_service_appointment set or change when a technician visit is booked.">
-        <input type="checkbox" class="skill-check" value="schedule_service_appointment" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Schedule Service Appointment</span></span>
-          <span class="desc">Set or change when a technician visit is booked.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="update_service_appointment" data-display="Update Service Appointment" data-section="Upcoming" data-search="update service appointment update_service_appointment edit appointment status, time, or assignment details.">
-        <input type="checkbox" class="skill-check" value="update_service_appointment" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Update Service Appointment</span></span>
-          <span class="desc">Edit appointment status, time, or assignment details.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="fetch_service_resource_availability" data-display="Get Resource Availability" data-section="Upcoming" data-search="get resource availability fetch_service_resource_availability check when a technician or resource is free to schedule.">
-        <input type="checkbox" class="skill-check" value="fetch_service_resource_availability" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Get Resource Availability</span></span>
-          <span class="desc">Check when a technician or resource is free to schedule.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="fetch_subscription_details" data-display="Get Subscription Details" data-section="Upcoming" data-search="get subscription details fetch_subscription_details load subscription term, quantity, and billing status.">
-        <input type="checkbox" class="skill-check" value="fetch_subscription_details" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Get Subscription Details</span></span>
-          <span class="desc">Load subscription term, quantity, and billing status.</span>
-        </span>
-      </label>
       <label class="skill" data-name="update_subscription_fields" data-display="Update Subscription" data-section="Upcoming" data-search="update subscription update_subscription_fields change subscription quantity, term, or status fields.">
         <input type="checkbox" class="skill-check" value="update_subscription_fields" />
         <span class="skill-body">
           <span class="skill-top"><span class="skill-title">Update Subscription</span></span>
           <span class="desc">Change subscription quantity, term, or status fields.</span>
-        </span>
-      </label>
-      <label class="skill" data-name="fetch_account_plan" data-display="Get Account Plan" data-section="Upcoming" data-search="get account plan fetch_account_plan load strategic plan and objectives for the account when the object exists.">
-        <input type="checkbox" class="skill-check" value="fetch_account_plan" />
-        <span class="skill-body">
-          <span class="skill-top"><span class="skill-title">Get Account Plan</span></span>
-          <span class="desc">Load strategic plan and objectives for the account when the object exists.</span>
         </span>
       </label>
       <label class="skill" data-name="fetch_financial_account" data-display="Get Financial Account" data-section="Upcoming" data-search="get financial account fetch_financial_account load fsc financial account balances and ownership when licensed.">
@@ -1626,12 +1637,13 @@
     </details>
   </div>
   <script>
-    const SKILL_META = {"create_account":{"d":"Open a new company record after the user confirms the name and key fields.","m":true,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fetch_account_details":{"d":"Load key account fields plus related contact/opportunity/case counts.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fetch_account_related_lists":{"d":"See contacts, opportunities, cases, and other children on the account.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fuzzy_search_accounts":{"d":"Locate a company when the user gives a partial or spoken name.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"update_account_fields":{"d":"Change industry, address, phone, or other account data the user confirmed.","m":true,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"create_contact":{"d":"Add a person to Salesforce, usually under an existing account.","m":true,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fetch_contact_details":{"d":"Load contact profile, title, and account link for outreach or updates.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fetch_contact_engagement_history":{"d":"Timeline of recent tasks, meetings, and emails with the contact.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fuzzy_search_contacts":{"d":"Find a person by name or email when the Salesforce Id is unknown.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"update_contact_fields":{"d":"Correct email, phone, title, or other contact details after confirmation.","m":true,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"convert_lead":{"d":"Turn a qualified lead into account, contact, and optional opportunity.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"create_lead":{"d":"Capture a new prospect when there is no matching account yet.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"fetch_lead_details":{"d":"Load lead status, source, and company context for follow-up.","m":false,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"fuzzy_search_leads":{"d":"Find a prospect by name or company before qualifying or converting.","m":false,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"update_lead_fields":{"d":"Update lead status, score, or contact info during qualification.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"add_opportunity_contact_role":{"d":"Link a contact to the deal with a role such as Decision Maker.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_opportunity_partner":{"d":"Associate a partner account with a deal and role.","m":true,"sec":"Opportunities","h":"PartnerAgenticSkillsHandler"},"add_opportunity_line_item":{"d":"Attach a priced product from the price book to the deal.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_opportunity_team_member":{"d":"Add a colleague to the deal with a team role.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"clone_opportunity":{"d":"Duplicate a deal to start a related or renewal opportunity faster.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"create_opportunity":{"d":"Start a new deal with account, stage, and close date confirmed.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_my_open_opportunities":{"d":"Pipeline view of the current user's open deals.","m":false,"sec":"Opportunities","h":"UtilityAgenticSkillsHandler"},"fetch_opportunity_contact_roles":{"d":"See who on the buying committee is linked to the deal.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_details":{"d":"Load stage, amount, close date, and deal context for review.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_partners":{"d":"List partners already tied to the opportunity.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_team":{"d":"List internal sellers and specialists on the deal team.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_stale_opportunities":{"d":"Surface deals with little recent activity that may need attention.","m":false,"sec":"Opportunities","h":"UtilityAgenticSkillsHandler"},"fuzzy_search_opportunities":{"d":"Find a deal by name when the user cannot provide the Id.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_fields":{"d":"Move stage, change amount or close date, or edit other deal fields.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_contact_role":{"d":"Change role or primary flag for someone on the deal.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_line_item":{"d":"Adjust quantity, price, or discount on an existing product line.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_case_comment":{"d":"Post an internal or public update on the case thread.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"add_case_team_member":{"d":"Bring another agent or specialist onto the case team.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"close_case":{"d":"Resolve and close a ticket after the customer issue is handled.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"create_case":{"d":"Open a support ticket linked to the right account or contact.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fetch_case_details":{"d":"Load case status, priority, and customer context for support work.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fetch_case_team":{"d":"See who is collaborating on the support case.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"link_knowledge_article_to_case":{"d":"Attach a helpful article to the case for audit and deflection.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fuzzy_search_cases":{"d":"Find a ticket by subject or case number from chat.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"update_case_fields":{"d":"Change status, priority, owner, or other case fields mid-work.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"complete_task":{"d":"Mark a follow-up done after the work is finished.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"create_event":{"d":"Book a meeting on the calendar linked to a person or record.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"create_task":{"d":"Schedule a follow-up to-do with due date and owner.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"fetch_my_open_tasks":{"d":"Show the current user's incomplete to-dos for the day or week.","m":false,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"log_activity":{"d":"Record a completed call, email, or note against any CRM record.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"update_event":{"d":"Reschedule or edit meeting time, location, or notes.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"update_task":{"d":"Reschedule, reassign, or edit an existing to-do.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"fetch_pricebook_entries":{"d":"Show list prices for products in a chosen or standard price book.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"fetch_product_details":{"d":"Load product code, family, and description for configuration.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"fuzzy_search_products":{"d":"Find a SKU or product name before adding lines to a deal or quote.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"add_campaign_member":{"d":"Enroll a lead or contact into the campaign.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"create_campaign":{"d":"Set up a new marketing campaign with name and schedule.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fetch_campaign_details":{"d":"Load campaign dates, type, status, and response counts.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fetch_campaign_members":{"d":"List who is already on the campaign and their status.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"remove_campaign_member":{"d":"Take a lead or contact off a campaign membership.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fuzzy_search_campaigns":{"d":"Find a marketing campaign by name for member or status work.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"update_campaign_fields":{"d":"Change campaign status, dates, or type after launch planning.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"update_campaign_member_status":{"d":"Mark someone as Sent, Responded, or another member status.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"add_quote_line_item":{"d":"Add a priced product line to the quote.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"create_quote":{"d":"Create a standard quote for an opportunity.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"fetch_quote_details":{"d":"Load quote header, status, and totals for review.","m":false,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"fuzzy_search_quotes":{"d":"Find a quote by name when the quote number is unknown.","m":false,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"update_quote_fields":{"d":"Change quote status, expiration, or header fields.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"update_quote_line_item":{"d":"Change quantity or price on an existing quote line.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"create_contract":{"d":"Create a contract record under the customer account.","m":true,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"fetch_contract_details":{"d":"Load contract status, term dates, and account linkage.","m":false,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"update_contract_fields":{"d":"Update contract status, dates, or terms after review.","m":true,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"add_order_item":{"d":"Add a product line to the order.","m":true,"sec":"Orders","h":"OrderAgenticSkillsHandler"},"create_order":{"d":"Create an order from account or opportunity context.","m":true,"sec":"Orders","h":"OrderAgenticSkillsHandler"},"fetch_order_details":{"d":"Load order status, account, and totals after win or fulfillment.","m":false,"sec":"Orders","h":"OrderAgenticSkillsHandler"},"update_order_fields":{"d":"Update order status or header fields during fulfillment.","m":true,"sec":"Orders","h":"OrderAgenticSkillsHandler"},"update_order_item":{"d":"Adjust quantity or price on an order line.","m":true,"sec":"Orders","h":"OrderAgenticSkillsHandler"},"fetch_renewal_opportunities":{"d":"List open renewal-type deals for pipeline or CSM review.","m":false,"sec":"Renewals","h":"UtilityAgenticSkillsHandler"},"fetch_upcoming_renewals":{"d":"Show renewals closing within the next N days for outreach planning.","m":false,"sec":"Renewals","h":"UtilityAgenticSkillsHandler"},"assign_to_queue":{"d":"Route a record into a work queue for the next available agent.","m":true,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fetch_asset_details":{"d":"Load asset status, account, and product information.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_case_entitlements":{"d":"See support coverage and entitlement levels for the customer.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_case_milestones":{"d":"Check SLA milestone progress and breach risk on the case.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_knowledge_article":{"d":"Open the full article body for use in a reply.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fetch_queue_cases":{"d":"List cases waiting in a specific support queue.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fuzzy_search_assets":{"d":"Find installed equipment by name or serial number.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"search_knowledge_articles":{"d":"Find KB articles that may answer the customer's question.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"update_asset_fields":{"d":"Update asset status, location, or warranty-related fields.","m":true,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_partner_account":{"d":"Load partner account profile and relationship details.","m":false,"sec":"Partner Management","h":"PartnerAgenticSkillsHandler"},"fuzzy_search_partners":{"d":"Find partner accounts by name for deal registration or teaming.","m":false,"sec":"Partner Management","h":"PartnerAgenticSkillsHandler"},"run_internal_prompt":{"d":"Generate a 360, summary, meeting prep, or draft from record data.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_session_context":{"d":"See which record and related people the chat is on, so the agent can act without asking for Ids. Use before updates, summaries, logging activity, or drafting follow-ups.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_picklist_values":{"d":"List valid choices for a field before setting a picklist value.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"transfer_record_owner":{"d":"Reassign ownership of a record to another user.","m":true,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_record_approvals":{"d":"See pending approval requests and submitters on a record.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_cpq_quote_details":{"d":"Load Salesforce CPQ quote header and configuration context.","m":false,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"create_cpq_quote":{"d":"Start a CPQ quote from an opportunity for guided selling.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"update_cpq_quote_fields":{"d":"Edit CPQ quote status or header fields before calculation.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"add_cpq_quote_line":{"d":"Add a CPQ product or bundle line to the quote.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"update_cpq_quote_line":{"d":"Change quantity, options, or pricing on a CPQ line.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"calculate_cpq_quote":{"d":"Run CPQ pricing so totals and discounts refresh.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"fetch_work_order_details":{"d":"Load field service work order status and related customer data.","m":false,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"create_work_order":{"d":"Open a work order for on-site or remote service.","m":true,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"update_work_order_fields":{"d":"Change work order status, priority, or schedule fields.","m":true,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"fetch_service_appointment":{"d":"Load appointment time window and assigned resource.","m":false,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"schedule_service_appointment":{"d":"Set or change when a technician visit is booked.","m":true,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"update_service_appointment":{"d":"Edit appointment status, time, or assignment details.","m":true,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"fetch_service_resource_availability":{"d":"Check when a technician or resource is free to schedule.","m":false,"sec":"Upcoming","h":"FieldServiceAgenticSkillsHandler"},"fetch_subscription_details":{"d":"Load subscription term, quantity, and billing status.","m":false,"sec":"Upcoming","h":"OrderAgenticSkillsHandler"},"update_subscription_fields":{"d":"Change subscription quantity, term, or status fields.","m":true,"sec":"Upcoming","h":"OrderAgenticSkillsHandler"},"fetch_account_plan":{"d":"Load strategic plan and objectives for the account when the object exists.","m":false,"sec":"Upcoming","h":"AccountAgenticSkillsHandler"},"fetch_financial_account":{"d":"Load FSC financial account balances and ownership when licensed.","m":false,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"update_financial_account_fields":{"d":"Update financial account status or attributes in FSC orgs.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"fetch_care_plan":{"d":"Load a Health Cloud care plan and related goals when available.","m":false,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"create_care_task":{"d":"Add a care-plan task for clinical or care-team follow-up.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"update_care_plan_fields":{"d":"Update care plan status or dates in Health Cloud orgs.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"}};
+    const SKILL_META = {"create_account":{"d":"Open a new company record after the user confirms the name and key fields.","m":true,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fetch_account_details":{"d":"Load key account fields plus related contact/opportunity/case counts.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fetch_account_plan":{"d":"Load strategic plan and objectives for the account when the object exists.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fetch_account_related_lists":{"d":"See contacts, opportunities, cases, and other children on the account.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"fuzzy_search_accounts":{"d":"Locate a company when the user gives a partial or spoken name.","m":false,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"update_account_fields":{"d":"Change industry, address, phone, or other account data the user confirmed.","m":true,"sec":"Accounts","h":"AccountAgenticSkillsHandler"},"create_contact":{"d":"Add a person to Salesforce, usually under an existing account.","m":true,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fetch_contact_details":{"d":"Load contact profile, title, and account link for outreach or updates.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fetch_contact_engagement_history":{"d":"Timeline of recent tasks, meetings, and emails with the contact.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"fuzzy_search_contacts":{"d":"Find a person by name or email when the Salesforce Id is unknown.","m":false,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"update_contact_fields":{"d":"Correct email, phone, title, or other contact details after confirmation.","m":true,"sec":"Contacts","h":"ContactAgenticSkillsHandler"},"convert_lead":{"d":"Turn a qualified lead into account, contact, and optional opportunity.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"create_lead":{"d":"Capture a new prospect when there is no matching account yet.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"fetch_lead_details":{"d":"Load lead status, source, and company context for follow-up.","m":false,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"fuzzy_search_leads":{"d":"Find a prospect by name or company before qualifying or converting.","m":false,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"update_lead_fields":{"d":"Update lead status, score, or contact info during qualification.","m":true,"sec":"Leads","h":"LeadAgenticSkillsHandler"},"add_opportunity_contact_role":{"d":"Link a contact to the deal with a role such as Decision Maker.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_opportunity_partner":{"d":"Associate a partner account with a deal and role.","m":true,"sec":"Opportunities","h":"PartnerAgenticSkillsHandler"},"add_opportunity_line_item":{"d":"Attach a priced product from the price book to the deal.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_opportunity_team_member":{"d":"Add a colleague to the deal with a team role.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"clone_opportunity":{"d":"Duplicate a deal to start a related or renewal opportunity faster.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"create_opportunity":{"d":"Start a new deal with account, stage, and close date confirmed.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_my_open_opportunities":{"d":"Pipeline view of the current user's open deals.","m":false,"sec":"Opportunities","h":"UtilityAgenticSkillsHandler"},"fetch_opportunity_contact_roles":{"d":"See who on the buying committee is linked to the deal.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_details":{"d":"Load stage, amount, close date, and deal context for review.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_partners":{"d":"List partners already tied to the opportunity.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_opportunity_team":{"d":"List internal sellers and specialists on the deal team.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"fetch_stale_opportunities":{"d":"Surface deals with little recent activity that may need attention.","m":false,"sec":"Opportunities","h":"UtilityAgenticSkillsHandler"},"fuzzy_search_opportunities":{"d":"Find a deal by name when the user cannot provide the Id.","m":false,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_fields":{"d":"Move stage, change amount or close date, or edit other deal fields.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_contact_role":{"d":"Change role or primary flag for someone on the deal.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"update_opportunity_line_item":{"d":"Adjust quantity, price, or discount on an existing product line.","m":true,"sec":"Opportunities","h":"OpportunityAgenticSkillsHandler"},"add_case_comment":{"d":"Post an internal or public update on the case thread.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"add_case_team_member":{"d":"Bring another agent or specialist onto the case team.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"close_case":{"d":"Resolve and close a ticket after the customer issue is handled.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"create_case":{"d":"Open a support ticket linked to the right account or contact.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fetch_case_details":{"d":"Load case status, priority, and customer context for support work.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fetch_case_team":{"d":"See who is collaborating on the support case.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"link_knowledge_article_to_case":{"d":"Attach a helpful article to the case for audit and deflection.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"fuzzy_search_cases":{"d":"Find a ticket by subject or case number from chat.","m":false,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"update_case_fields":{"d":"Change status, priority, owner, or other case fields mid-work.","m":true,"sec":"Cases","h":"CaseAgenticSkillsHandler"},"complete_task":{"d":"Mark a follow-up done after the work is finished.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"create_event":{"d":"Book a meeting on the calendar linked to a person or record.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"create_task":{"d":"Schedule a follow-up to-do with due date and owner.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"fetch_my_open_tasks":{"d":"Show the current user's incomplete to-dos for the day or week.","m":false,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"log_activity":{"d":"Record a completed call, email, or note against any CRM record.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"update_event":{"d":"Reschedule or edit meeting time, location, or notes.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"update_task":{"d":"Reschedule, reassign, or edit an existing to-do.","m":true,"sec":"Activities & Scheduling","h":"ActivityAgenticSkillsHandler"},"fetch_pricebook_entries":{"d":"Show list prices for products in a chosen or standard price book.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"fetch_product_details":{"d":"Load product code, family, and description for configuration.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"fuzzy_search_products":{"d":"Find a SKU or product name before adding lines to a deal or quote.","m":false,"sec":"Products & Price Books","h":"ProductAgenticSkillsHandler"},"add_campaign_member":{"d":"Enroll a lead or contact into the campaign.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"create_campaign":{"d":"Set up a new marketing campaign with name and schedule.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fetch_campaign_details":{"d":"Load campaign dates, type, status, and response counts.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fetch_campaign_members":{"d":"List who is already on the campaign and their status.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"remove_campaign_member":{"d":"Take a lead or contact off a campaign membership.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"fuzzy_search_campaigns":{"d":"Find a marketing campaign by name for member or status work.","m":false,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"update_campaign_fields":{"d":"Change campaign status, dates, or type after launch planning.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"update_campaign_member_status":{"d":"Mark someone as Sent, Responded, or another member status.","m":true,"sec":"Campaigns","h":"CampaignAgenticSkillsHandler"},"add_quote_line_item":{"d":"Add a priced product line to the quote.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"create_quote":{"d":"Create a standard quote for an opportunity.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"fetch_quote_details":{"d":"Load quote header, status, and totals for review.","m":false,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"fuzzy_search_quotes":{"d":"Find a quote by name when the quote number is unknown.","m":false,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"update_quote_fields":{"d":"Change quote status, expiration, or header fields.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"update_quote_line_item":{"d":"Change quantity or price on an existing quote line.","m":true,"sec":"Quotes","h":"QuoteAgenticSkillsHandler"},"create_contract":{"d":"Create a contract record under the customer account.","m":true,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"fetch_contract_details":{"d":"Load contract status, term dates, and account linkage.","m":false,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"update_contract_fields":{"d":"Update contract status, dates, or terms after review.","m":true,"sec":"Contracts","h":"ContractAgenticSkillsHandler"},"add_order_item":{"d":"Add a product line to the order.","m":true,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"create_order":{"d":"Create an order from account or opportunity context.","m":true,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"fetch_order_details":{"d":"Load order status, account, and totals after win or fulfillment.","m":false,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"fetch_subscription_details":{"d":"Load subscription term, quantity, and billing status.","m":false,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"update_order_fields":{"d":"Update order status or header fields during fulfillment.","m":true,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"update_order_item":{"d":"Adjust quantity or price on an order line.","m":true,"sec":"Orders & Subscriptions","h":"OrderAgenticSkillsHandler"},"fetch_renewal_opportunities":{"d":"List open renewal-type deals for pipeline or CSM review.","m":false,"sec":"Renewals","h":"UtilityAgenticSkillsHandler"},"fetch_upcoming_renewals":{"d":"Show renewals closing within the next N days for outreach planning.","m":false,"sec":"Renewals","h":"UtilityAgenticSkillsHandler"},"assign_to_queue":{"d":"Route a record into a work queue for the next available agent.","m":true,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fetch_asset_details":{"d":"Load asset status, account, and product information.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_case_entitlements":{"d":"See support coverage and entitlement levels for the customer.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_case_milestones":{"d":"Check SLA milestone progress and breach risk on the case.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_knowledge_article":{"d":"Open the full article body for use in a reply.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fetch_queue_cases":{"d":"List cases waiting in a specific support queue.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"fuzzy_search_assets":{"d":"Find installed equipment by name or serial number.","m":false,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"search_knowledge_articles":{"d":"Find KB articles that may answer the customer's question.","m":false,"sec":"Service Cloud","h":"UtilityAgenticSkillsHandler"},"update_asset_fields":{"d":"Update asset status, location, or warranty-related fields.","m":true,"sec":"Service Cloud","h":"ServiceAgenticSkillsHandler"},"fetch_work_order_details":{"d":"Load field service work order status and related customer data.","m":false,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"create_work_order":{"d":"Open a work order for on-site or remote service.","m":true,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"update_work_order_fields":{"d":"Change work order status, priority, or schedule fields.","m":true,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"fetch_service_appointment":{"d":"Load appointment time window and assigned resource.","m":false,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"schedule_service_appointment":{"d":"Set or change when a technician visit is booked.","m":true,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"update_service_appointment":{"d":"Edit appointment status, time, or assignment details.","m":true,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"fetch_service_resource_availability":{"d":"Check when a technician or resource is free to schedule.","m":false,"sec":"Field Service","h":"FieldServiceAgenticSkillsHandler"},"fetch_partner_account":{"d":"Load partner account profile and relationship details.","m":false,"sec":"Partner Management","h":"PartnerAgenticSkillsHandler"},"fuzzy_search_partners":{"d":"Find partner accounts by name for deal registration or teaming.","m":false,"sec":"Partner Management","h":"PartnerAgenticSkillsHandler"},"run_internal_prompt":{"d":"Generate a 360, summary, meeting prep, or draft from record data.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_session_context":{"d":"See which record and related people the chat is on, so the agent can act without asking for Ids. Use before updates, summaries, logging activity, or drafting follow-ups.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_picklist_values":{"d":"List valid choices for a field before setting a picklist value.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"transfer_record_owner":{"d":"Reassign ownership of a record to another user.","m":true,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_record_approvals":{"d":"See pending approval requests and submitters on a record.","m":false,"sec":"Platform & Insights","h":"UtilityAgenticSkillsHandler"},"fetch_cpq_quote_details":{"d":"Load Salesforce CPQ quote header and configuration context.","m":false,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"create_cpq_quote":{"d":"Start a CPQ quote from an opportunity for guided selling.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"update_cpq_quote_fields":{"d":"Edit CPQ quote status or header fields before calculation.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"add_cpq_quote_line":{"d":"Add a CPQ product or bundle line to the quote.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"update_cpq_quote_line":{"d":"Change quantity, options, or pricing on a CPQ line.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"calculate_cpq_quote":{"d":"Run CPQ pricing so totals and discounts refresh.","m":true,"sec":"Upcoming","h":"CpqAgenticSkillsHandler"},"update_subscription_fields":{"d":"Change subscription quantity, term, or status fields.","m":true,"sec":"Upcoming","h":"OrderAgenticSkillsHandler"},"fetch_financial_account":{"d":"Load FSC financial account balances and ownership when licensed.","m":false,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"update_financial_account_fields":{"d":"Update financial account status or attributes in FSC orgs.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"fetch_care_plan":{"d":"Load a Health Cloud care plan and related goals when available.","m":false,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"create_care_task":{"d":"Add a care-plan task for clinical or care-team follow-up.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"},"update_care_plan_fields":{"d":"Update care plan status or dates in Health Cloud orgs.","m":true,"sec":"Upcoming","h":"IndustryAgenticSkillsHandler"}};
     const q = document.getElementById('q');
     const statusEl = document.getElementById('status');
     const emptyEl = document.getElementById('empty');
     const selCount = document.getElementById('selCount');
     const visCount = document.getElementById('visCount');
+    const upcCount = document.getElementById('upcCount');
     const downloadSel = document.getElementById('downloadSel');
     const modal = document.getElementById('skillModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -1731,6 +1743,18 @@
       return names;
     }
 
+    function visibleSplit() {
+      const ready = new Set();
+      const upcoming = new Set();
+      allSkills().forEach(card => {
+        if (card.hidden || !card.dataset.name) return;
+        if (card.dataset.section === 'Upcoming') upcoming.add(card.dataset.name);
+        else ready.add(card.dataset.name);
+      });
+      upcoming.forEach(n => { if (ready.has(n)) upcoming.delete(n); });
+      return { ready: ready.size, upcoming: upcoming.size };
+    }
+
     function syncChecks(name, checked) {
       document.querySelectorAll('.skill-check').forEach(cb => {
         if (cb.value === name) cb.checked = checked;
@@ -1749,9 +1773,11 @@
 
     function refreshCounts() {
       const selected = selectedNames().length;
-      const visible = visibleSkillNames().size;
+      const split = visibleSplit();
+      const visible = split.ready + split.upcoming;
       selCount.textContent = String(selected);
-      visCount.textContent = String(visible);
+      visCount.textContent = String(split.ready);
+      upcCount.textContent = split.upcoming ? ' · ' + split.upcoming + ' upcoming' : '';
       downloadSel.disabled = selected === 0;
       emptyEl.classList.toggle('show', visible === 0);
       tiles.forEach(refreshTileSelection);
